@@ -3,7 +3,7 @@
 import get from './routes/get';
 import post from './routes/post';
 import remove from './routes/remove';
-import update from './routes/update';
+import patch from './routes/patch';
 
 import type { Synth } from './types';
 
@@ -16,7 +16,7 @@ export default (app: *) => (
       post(req, res)
     ))
     .patch('/', (req, res): Promise<Synth> => (
-      update(req, res)
+      patch(req, res)
     ))
     .delete('/', (req, res): Promise<Synth> => (
       remove(req, res)
