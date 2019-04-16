@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 
-import config from './config';
 import routes from './routes';
 
 R.pipe(({ app, port }) => {
@@ -32,5 +31,5 @@ R.pipe(({ app, port }) => {
   });
 })({
   app: Express(),
-  port: config.port,
+  port: 3030,
 });

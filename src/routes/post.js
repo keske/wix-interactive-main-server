@@ -2,7 +2,11 @@
 
 import R from 'ramda';
 
-export default async (req: any, res: any): Promise<void> => (
+import devices from '../devices';
+
+import type { Synth } from '../types';
+
+export default async (req: any, res: any): Promise<Synth> => (
   R.pipe(
     ({ data }) => (
       R.cond([
@@ -12,11 +16,13 @@ export default async (req: any, res: any): Promise<void> => (
             .end();
         }],
         [R.T, async () => {
+          const device: Synth = req.body;
+
+          devices.push(device);
+
           res
             .status(200)
-            .send({
-              post: true,
-            })
+            .send(device)
             .end();
         }],
       ])(data)
