@@ -9,16 +9,20 @@ import routes from './routes';
 
 R.pipe(({ app, port }) => {
   app.use(cors());
+
   app.use(helmet());
 
   app.disable('x-powered-by');
 
   app.use(bodyParser.json());
+
   app.use(
     bodyParser.urlencoded({
       extended: false,
     }),
   );
+
+  app.use(Express.static('./public'));
 
   routes(app);
 
