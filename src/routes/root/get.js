@@ -1,8 +1,8 @@
 // @flow
 
-import devices from '../devices';
+import devices from '../../devices';
 
-import type { Synth } from '../types';
+import type { Synth } from '../../types';
 
 export default async (req: any, res: any): Promise<Array<Synth>> => {
   res

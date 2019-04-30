@@ -2,9 +2,9 @@
 
 import R from 'ramda';
 
-import devices from '../devices';
+import devices from '../../devices';
 
-import type { Synth } from '../types';
+import type { Synth } from '../../types';
 
 export default async (req: any, res: any): Promise<Synth> => (
   R.pipe(
@@ -16,15 +16,19 @@ export default async (req: any, res: any): Promise<Synth> => (
             .end();
         }],
         [R.T, async () => {
-          const { id } = req.body;
+          const { id, device } = req.body;
 
           R.pipe(
             R.findIndex(R.propEq('id', id)),
             (index) => {
-              devices.pop(index);
+              devices[index] = {
+                ...devices[index],
+                ...device,
+              };
 
               res
-                .status(204)
+                .status(200)
+                .send(devices[index])
                 .end();
             },
           )(devices);
